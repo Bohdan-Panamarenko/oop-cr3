@@ -37,11 +37,6 @@ class Organization:
             raise ValueError
         self.__address = value
 
-    # def __eq__(self, other):
-    #     if not isinstance(other, Organization):
-    #         raise ValueError
-    #     return (self.name, self.phone, self.address) == (other.name, other.phone, other.address)
-    
     def __str__(self):
         return f"{self.name}: {self.address}, {self.phone}"
 
@@ -93,34 +88,6 @@ class Department(Organization):
         if not isinstance(value, int) or value < 0:
             raise ValueError
         self.__masters = value
-
-    # def __add__(self, other):
-    #     if not isinstance(other, int) or other < 1:
-    #         raise ValueError
-    #     self.bachelors += other
-    #
-    # def __sub__(self, other):
-    #     if not isinstance(other, int) or other < 1 or self.bachelors - other < 0:
-    #         raise ValueError
-    #     self.bachelors -= other
-    #
-    # def __iadd__(self, other):
-    #     if not isinstance(other, int) or other < 1:
-    #         raise ValueError
-    #     self.masters += other
-    #
-    # def __isub__(self, other):
-    #     if not isinstance(other, int) or other < 1 or self.masters - other < 0:
-    #         raise ValueError
-    #     self.masters -= other
-        
-    # def __eq__(self, other):
-    #     if not isinstance(other, Department):
-    #         raise ValueError
-    #
-    #     return (self.name, self.phone, self.address) == (other.name, other.phone, other.address) and \
-    #            (self.speciality, self.bachelors, self.speciality, self.masters) == \
-    #            (other.specialists, other.bachelors, other.speciality, other.masters)
 
     def all_people(self):
         return self.bachelors + self.specialists + self.masters
