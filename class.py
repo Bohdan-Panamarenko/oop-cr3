@@ -1,3 +1,4 @@
+import copy
 import re
 
 
@@ -133,11 +134,31 @@ class Faculty:
         self.__departments.append(other)
 
     def __iter__(self):
-        return iter(self.__departments)
+        return FacultyIterator(self.__departments)
 
     def all_students(self):
         x = (d.all_students() for d in self.__departments)
         return sum(x)
+
+
+class FacultyIterator:
+    def __init__(self, departments):
+        if not isinstance(departments, list):
+            raise ValueError
+        self.__departments = departments
+        self.__counter = 0
+        self.__limit = len(departments)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.__counter < self.__limit:
+            dep = copy.copy(self.__departments[self.__counter])
+            self.__counter += 1
+            return dep
+        else:
+            raise StopIteration
 
 
 d1 = Department("APEPS", "099774135", "some building 2", "Programming", 20, 5, 10)
